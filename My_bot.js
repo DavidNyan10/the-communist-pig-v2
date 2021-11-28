@@ -1978,7 +1978,8 @@ function fac(num) {
 }
 
 
-fs.readFile('token.txt', 'utf8', (err, data) => {client.login(data)})
+const token = fs.readFileSync("token.txt", "utf8")
+client.login(token)
 
 
 
