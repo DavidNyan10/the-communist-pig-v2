@@ -1,3 +1,4 @@
+const path = require('path')
 const fs = require('fs')
 const Discord = require('discord.js')
 const Canvas = require('canvas');
@@ -5,6 +6,23 @@ const client = new Discord.Client({
     restRequestTimeout: 1048576,
 	retryLimit: 64
   })
+
+const nodeModulesPath = path.join(__dirname, "node_modules");
+
+function installDeps() {
+	console.log("Installing dependencies, please wait...");
+	execSync("npm install --only=prod", {
+		cwd: __dirname, 
+		stdio: [ null, null, null ]
+	});
+	console.log("Dependencies successfully installed!");
+	//powercord.pluginManager.remount(__dirname);
+}
+
+if (!fs.existsSync(nodeModulesPath)) {
+	installDeps();
+	return;
+}
 
 let sender
 
