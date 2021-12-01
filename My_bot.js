@@ -1996,7 +1996,6 @@ function fac(num) {
 }
 
 
-const token = fs.readFileSync("token.txt", "utf8")
 client.login(token)
 
 
